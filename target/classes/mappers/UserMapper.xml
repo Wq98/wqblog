@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.mapper.UserMapper">
+    <select id="checkUserPhone" parameterType="string" resultType="int">
+        select count(user_phone) from user_info where user_phone=#{userPhone};
+    </select>
+    <insert id="saveUser" parameterType="User">
+         insert into user_info(
+         user_id,
+         user_phone,
+         password,
+         user_birth,
+         nickname,
+         register_time,
+         user_state) values(
+         #{userId},
+         #{userPhone},
+         #{password},
+         null,null,
+         #{registerTime},null )
+    </insert>
+    <select id="queryExist" parameterType="User" resultType="User">
+        select * from user_info
+        where user_phone=#{userPhone} and password=#{password};
+    </select>
+   <!-- <select id="queryByUserPhone" parameterType="String" resultType="String">
+        select * from user_info
+        where user_phone=#{userPhone};
+    </select>-->
+</mapper>
+
+
+
+
+
+
+
+

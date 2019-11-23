@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.mapper.ArticleMapper">
+    <insert id="publish" parameterType="Article">
+         insert into article_info(
+         article_id,
+         user_phone,
+         latest_time,
+         article_context,
+         article_state) values(
+         #{articleId},
+         #{userPhone},
+         #{latestTime},
+         #{articleContext},#{articleState} )
+    </insert>
+<select id="queryAll" resultType="Article">
+    select * from article_info
+    where article_state=0
+    order by latest_time desc;
+</select>
+    <update id="deleteArticle" parameterType="Article">
+		update article_info
+		set article_state=1
+		where article_id=#{articleId}
+	</update>
+    <select id="queryArticleById" parameterType="string" resultType="Article">
+        select * from article_info
+        where article_id=#{articleId}
+    </select>
+    <select id="queryByUserPhone" parameterType="string" resultType="Article">
+        select * from article_info
+        where user_phone=#{userPhone} and article_state=0
+    </select>
+    <update id="updateArticle" parameterType="Article">
+		update article_info
+		set
+		latest_time=#{latestTime},
+		article_context=#{articleContext}
+		where article_id=#{articleId}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
