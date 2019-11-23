@@ -11,12 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/article")
-@Api(value = "博文相关操作API")
+@Api(description = "博文相关操作API")
 public class ArticleController {
     @Resource
     private ArticleService articleService;
-    @ApiOperation(value = "发布微博",notes="根据Article对象创建微博")
-    @RequestMapping(value = "publish",method = RequestMethod.POST)
+    @ApiOperation(value = "发布article",notes="根据Article对象创建微博")
+    @PostMapping("publish")
     public SysResult publish(Article article){
         try {
             articleService.publish(article);
@@ -27,20 +27,20 @@ public class ArticleController {
         }
     }
     @ApiOperation(value = "获取所有article",notes = "无需参数")
-    @RequestMapping(value = "queryAll",method = RequestMethod.POST)
+    @PostMapping("queryAll")
     public List<Article> queryAll(){
         List<Article> list=articleService.queryAll();
         return list;
     }
 
-    @ApiOperation(value = "获取个人article",notes = "需要传递articleId参数")
-    @RequestMapping(value = "queryArticleById{articleId}",method = RequestMethod.POST)
+    @ApiOperation(value = "获取某条article",notes = "需要传递articleId参数")
+    @PostMapping("queryArticleById{articleId}")
     public Article queryArticleById( String articleId){
         Article article=articleService.queryArticleById(articleId);
         return article;
     }
     @ApiOperation(value = "删除个人某条article",notes = "需要传递articleId参数")
-    @RequestMapping(value = "deleteArticle{articleId}",method = RequestMethod.POST)
+    @PostMapping("deleteArticle{articleId}")
     public SysResult deleteArticle(String articleId){
 
         boolean b=articleService.deleteArticle(articleId);
@@ -51,7 +51,7 @@ public class ArticleController {
         }
     }
     @ApiOperation(value = "修改某条article",notes = "需要传递articleId参数和articleContext参数")
-    @RequestMapping(value = "updateArticle",method = RequestMethod.POST)
+    @PostMapping("updateArticle")
     public SysResult updateArticle(Article article){
         boolean b=articleService.updateArticle(article);
         if(b) {
@@ -62,7 +62,7 @@ public class ArticleController {
     }
 
     @ApiOperation(value = "获取个人所有article",notes = "需要传递userPhone参数")
-    @RequestMapping(value = "queryByUserPhone{userPhone}",method = RequestMethod.POST)
+    @PostMapping("queryByUserPhone{userPhone}")
     public List<Article> queryByUserPhone(String userPhone){
         List<Article> list=articleService.queryByUserPhone(userPhone);
         return list;

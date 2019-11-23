@@ -7,9 +7,7 @@ import cn.tedu.pojo.User;
 import cn.tedu.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/user")
-@Api(value = "用户相关操作API")
+@Api(description = "用户相关操作API")
 public class UserController {
     @Resource
     private UserService userService;
     @ApiOperation(value = "从数据库获取userPhone",notes="需要传递userPhone参数")
-    @RequestMapping(value = "/checkUserPhone",method = RequestMethod.POST)
+    @PostMapping("/checkUserPhone")
     public SysResult checkUsername(String userPhone){
         int exist=userService.checkUserPhone(userPhone);
         if(exist==0){
@@ -32,7 +30,7 @@ public class UserController {
         }
     }
     @ApiOperation(value = "注册用户",notes = "根据User对象创建用户")
-    @RequestMapping(value = "save",method = RequestMethod.POST)
+    @PostMapping("save")
     public SysResult saveUser(User user){
         try {
             userService.saveUser(user);
@@ -43,7 +41,7 @@ public class UserController {
         }
     }
     @ApiOperation(value = "用户登录",notes = "根据手机号和密码验证登录")
-    @RequestMapping(value = "login",method = RequestMethod.GET)
+    @GetMapping("login")
     public SysResult login(User user, HttpServletRequest request, HttpServletResponse response){
             User exist = userService.login(user);
             if("".equals(exist)){
