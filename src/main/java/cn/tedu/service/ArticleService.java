@@ -1,7 +1,6 @@
 package cn.tedu.service;
 
 import cn.tedu.common.UUIDUtil;
-import cn.tedu.common.WqBlogUIResult;
 import cn.tedu.mapper.ArticleMapper;
 import cn.tedu.pojo.Article;
 import org.springframework.stereotype.Service;
