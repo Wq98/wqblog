@@ -8,11 +8,12 @@
          user_phone,
          latest_time,
          article_context,
-         article_state) values(
+         article_state,
+         pic_src) values(
          #{articleId},
          #{userPhone},
          #{latestTime},
-         #{articleContext},#{articleState} )
+         #{articleContext},#{articleState},#{picSrc})
     </insert>
 <select id="queryAll" resultType="Article">
     select * from article_info

@@ -10,5 +10,6 @@ public class Article {
     private Date latestTime;
     private String articleContext;
     private String articleState;
+    private String picSrc;
 
 }

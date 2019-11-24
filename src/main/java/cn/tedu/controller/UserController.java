@@ -1,6 +1,4 @@
 package cn.tedu.controller;
-
-
 import cn.tedu.common.CookieUtils;
 import cn.tedu.common.SysResult;
 import cn.tedu.pojo.User;
