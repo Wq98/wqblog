@@ -12,4 +12,5 @@ public class User {
     private String nickname;
     private Date registerTime;
     private Integer userState;
+    private String token;
 }

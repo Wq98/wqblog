@@ -2,37 +2,18 @@ package cn.tedu;
 
 import cn.tedu.pojo.User;
 import cn.tedu.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import redis.clients.jedis.Jedis;
 
 import java.util.Date;
-
+@Slf4j
 public class test{
-
     @Test
     public void test1(){
-        /*UserController userController=new UserController();
-        userController.checkUsername("111");*/
-        UserService userService=new UserService();
-        User user=new User();
-        user.setUserId("getwtf");
-        user.setUserPhone("777");
-        user.setPassword("777");
-        user.setUserBirth("2019-11-21");
-        user.setNickname(null);
-        user.setRegisterTime(new Date());
-        user.setUserState(null);
-        System.out.println(user);
-        userService.saveUser(user);
-
-        /*ArticleService articleService=new ArticleService();
-        Article article=new Article();
-        article.setArticleId("fheihie");
-        article.setUserPhone("222");
-        article.setLatestTime(new Date());
-        article.setArticleContext("fdiwehiuh");
-        article.setArticleState(null);
-        System.out.println(article+"******test");
-        articleService.publish(article);*/
-
+        Jedis jedis=new Jedis("49.233.145.110",6379);
+        jedis.set("name","wei");
     }
 }

@@ -20,4 +20,7 @@ public interface UserMapper {
     boolean updateUserState1(String userPhone);
 
     User queryExistStateNot1(User user);
+
+    User queryUserInfo(String userId);
+    User queryUserPhone(String userPhone);
 }

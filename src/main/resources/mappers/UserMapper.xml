@@ -13,17 +13,27 @@
          user_birth,
          nickname,
          register_time,
-         user_state) values(
+         user_state,
+         token) values(
          #{userId},
          #{userPhone},
          #{password},
          null,null,
-         #{registerTime},null )
+         #{registerTime},null,null )
     </insert>
     <select id="queryExist" parameterType="User" resultType="User">
         select * from user_info
         where user_phone=#{userPhone} and password=#{password};
     </select>
+    <select id="queryUserInfo" parameterType="string" resultType="User">
+        select * from user_info
+        where user_id=#{userId};
+    </select>
+    <select id="queryUserPhone" parameterType="string" resultType="User">
+        select * from user_info
+        where user_phone=#{userPhone};
+    </select>
+
     <select id="queryExistStateNot1" parameterType="User" resultType="User">
         select * from user_info
         where user_phone=#{userPhone} and password=#{password} and user_state!=1;
