@@ -20,4 +20,5 @@ public interface ArticleMapper {
 
 
     List<Article> queryByUserPhone(String userPhone);
+    void updatePraiseNum(Article article);
 }

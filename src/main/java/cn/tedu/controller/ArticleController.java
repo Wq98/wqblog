@@ -19,7 +19,6 @@ public class ArticleController {
     @PostMapping("publish")
     public SysResult publish(Article article){
         try {
-            System.out.println(article.getPicSrc());
             articleService.publish(article);
             return SysResult.ok();
         }catch (Exception e){

@@ -20,6 +20,9 @@ public class ArticleService {
         sdf.format(date);
         article.setArticleId(UUIDUtil.getUUID().replace("-",""));
         article.setLatestTime(date);
+        String src=article.getPicSrc();
+        String newsrc=src.split("\\\\")[2];
+        article.setPicSrc(newsrc);
         article.setArticleState("0");
         articleMapper.publish(article);
     }
@@ -53,5 +56,11 @@ public class ArticleService {
 
     public List<Article> queryByUserPhone(String userPhone) {
         return articleMapper.queryByUserPhone(userPhone);
+    }
+
+    public void updatePraiseNum(String articleId){
+        Article article=articleMapper.queryArticleById(articleId);
+        article.setPraiseNum(article.getPraiseNum()+1);
+        articleMapper.updatePraiseNum(article);
     }
 }

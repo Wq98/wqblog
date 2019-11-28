@@ -11,5 +11,6 @@ public class Article {
     private String articleContext;
     private String articleState;
     private String picSrc;
+    private Integer praiseNum;
 
 }

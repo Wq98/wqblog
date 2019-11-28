@@ -9,11 +9,12 @@
          latest_time,
          article_context,
          article_state,
-         pic_src) values(
+         pic_src,
+         praise_num) values(
          #{articleId},
          #{userPhone},
          #{latestTime},
-         #{articleContext},#{articleState},#{picSrc})
+         #{articleContext},#{articleState},#{picSrc},0)
     </insert>
 <select id="queryAll" resultType="Article">
     select * from article_info
@@ -38,6 +39,12 @@
 		set
 		latest_time=#{latestTime},
 		article_context=#{articleContext}
+		where article_id=#{articleId}
+	</update>
+    <update id="updatePraiseNum" parameterType="Article">
+		update article_info
+		set
+		praise_num=#{praiseNum}
 		where article_id=#{articleId}
 	</update>
 </mapper>
