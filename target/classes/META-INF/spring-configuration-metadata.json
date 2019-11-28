@@ -1,0 +1,38 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "cn.tedu.config.DruidConfig",
+      "name": "spring.datasource",
+      "sourceMethod": "druidDataSource()",
+      "type": "javax.sql.DataSource"
+    },
+    {
+      "sourceType": "cn.tedu.config.JedisPoolConfig",
+      "name": "wqblog.redis",
+      "type": "cn.tedu.config.JedisPoolConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.tedu.config.JedisPoolConfig",
+      "name": "wqblog.redis.max-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "cn.tedu.config.JedisPoolConfig",
+      "name": "wqblog.redis.max-total",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "cn.tedu.config.JedisPoolConfig",
+      "name": "wqblog.redis.min-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "cn.tedu.config.JedisPoolConfig",
+      "name": "wqblog.redis.nodes",
+      "type": "java.util.List<java.lang.String>"
+    }
+  ]
+}

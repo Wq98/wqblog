@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.mapper.PraiseMapper">
+   <insert id="insertPraise" parameterType="praise">
+       insert into praise_info(
+       praise_id,
+       article_id,
+       user_phone,
+       praise_time,
+       praise_state
+       )values(
+       #{praiseId},
+       #{articleId},
+       #{userPhone},
+       #{praiseTime},
+       1
+       )
+   </insert>
+    <select id="selectExist" parameterType="Praise" resultType="Praise">
+        select * from praise_info
+        where article_id=#{articleId} and user_phone=#{userPhone}
+    </select>
+
+    <insert id="insertCollection" parameterType="collection">
+       insert into collection_info(
+       collection_id,
+       article_id,
+       user_phone,
+       collection_time,
+       collection_state
+       )values(
+       #{collectionId},
+       #{articleId},
+       #{userPhone},
+       #{collectionTime},
+       1
+       )
+   </insert>
+    <select id="selectCollectionExist" parameterType="Collections" resultType="Collections">
+        select * from collection_info
+        where article_id=#{articleId} and user_phone=#{userPhone}
+    </select>
+    <select id="praiseNum" resultType="int">
+        select count(praise_id) from praise_info
+        where article_id=#{articleId} and user_phone=#{userPhone}
+    </select>
+</mapper>
