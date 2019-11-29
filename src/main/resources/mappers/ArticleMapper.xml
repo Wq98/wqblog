@@ -10,11 +10,13 @@
          article_context,
          article_state,
          pic_src,
-         praise_num) values(
+         praise_num,
+         comment_num,
+         transmit_num) values(
          #{articleId},
          #{userPhone},
          #{latestTime},
-         #{articleContext},#{articleState},#{picSrc},0)
+         #{articleContext},#{articleState},#{picSrc},0,0,0)
     </insert>
 <select id="queryAll" resultType="Article">
     select * from article_info
@@ -45,6 +47,18 @@
 		update article_info
 		set
 		praise_num=#{praiseNum}
+		where article_id=#{articleId}
+	</update>
+    <update id="updateCommentNum" parameterType="Article">
+		update article_info
+		set
+		comment_num=#{commentNum}
+		where article_id=#{articleId}
+	</update>
+    <update id="updateTransmitNum" parameterType="Article">
+		update article_info
+		set
+		transmit_num=#{transmitNum}
 		where article_id=#{articleId}
 	</update>
 </mapper>

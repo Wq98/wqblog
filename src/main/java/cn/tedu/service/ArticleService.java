@@ -16,7 +16,7 @@ public class ArticleService {
     private ArticleMapper articleMapper;
     public void publish(Article article) {
         Date date=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         sdf.format(date);
         article.setArticleId(UUIDUtil.getUUID().replace("-",""));
         article.setLatestTime(date);
@@ -62,5 +62,17 @@ public class ArticleService {
         Article article=articleMapper.queryArticleById(articleId);
         article.setPraiseNum(article.getPraiseNum()+1);
         articleMapper.updatePraiseNum(article);
+    }
+
+    public void updateCommentNum(String articleId){
+        Article article=articleMapper.queryArticleById(articleId);
+        article.setCommentNum(article.getCommentNum()+1);
+        articleMapper.updateCommentNum(article);
+    }
+
+    public void updateTransmitNum(String articleId){
+        Article article=articleMapper.queryArticleById(articleId);
+        article.setTransmitNum(article.getTransmitNum()+1);
+        articleMapper.updateTransmitNum(article);
     }
 }

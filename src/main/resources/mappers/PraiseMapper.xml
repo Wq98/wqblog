@@ -45,4 +45,70 @@
         select count(praise_id) from praise_info
         where article_id=#{articleId} and user_phone=#{userPhone}
     </select>
+
+    <select id="queryByarticleId" parameterType="string" resultType="Comment">
+        select * from comment_info
+        where article_id=#{articleId}
+        order by comment_time desc;
+    </select>
+
+    <insert id="insertComment" parameterType="comment">
+        insert into comment_info(
+       comment_id,
+       article_id,
+       user_phone,
+       comment_context,
+       comment_time,
+       comment_state
+       )values(
+       #{commentId},
+       #{articleId},
+       #{userPhone},
+       #{commentContext},
+       #{commentTime},
+       1
+       )
+    </insert>
+    <select id="commentNum" resultType="int">
+        select count(comment_id) from comment_info
+        where article_id=#{articleId} and user_phone=#{userPhone}
+    </select>
+
+    <insert id="insertTransmitContext" parameterType="transmit">
+        insert into transmit_info(
+        transmit_id,
+        article_id,
+        user_phone,
+        transmit_phone,
+        transmit_context,
+        transmit_time,
+        transmit_state) values(
+        #{transmitId},
+        #{articleId},
+        #{userPhone},
+        #{transmitPhone},
+        #{transmitContext},
+        #{transmitTime},
+        1
+        )
+    </insert>
+    <insert id="insertTransmit" parameterType="transmit">
+        insert into transmit_info(
+        transmit_id,
+        article_id,
+        user_phone,
+        transmit_phone,
+        transmit_context,
+        transmit_time,
+        transmit_state) values(
+        #{transmitId},
+        #{articleId},
+        #{userPhone},
+        #{transmitPhone},
+        null,
+        #{transmitTime},
+        1
+        )
+    </insert>
+
 </mapper>

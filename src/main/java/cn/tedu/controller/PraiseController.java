@@ -2,7 +2,9 @@ package cn.tedu.controller;
 
 import cn.tedu.common.SysResult;
 import cn.tedu.pojo.Collections;
+import cn.tedu.pojo.Comment;
 import cn.tedu.pojo.Praise;
+import cn.tedu.pojo.Transmit;
 import cn.tedu.service.ArticleService;
 import cn.tedu.service.PraiseService;
 import io.swagger.annotations.Api;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName: PraiseController
@@ -50,5 +53,47 @@ public class PraiseController {
             return SysResult.build(201,"",null);
         }
     }
-
+    @ApiOperation(value = "从界面获取articleId",notes="根据articleId查找相关所有评论")
+    @PostMapping("queryByarticleId{articleId}")
+    public List<Comment> queryByarticleId(String articleId){
+        List<Comment> comment=praiseService.queryByarticleId(articleId);
+        if(comment!=null){
+            return comment;
+        }else{
+            return null;
+        }
+    }
+    @ApiOperation(value = "从界面获取articleId、userPhone和commentContext",notes="根据comment对象创建评论成功记录")
+    @PostMapping("insertComment")
+    public SysResult insertComment(Comment comment){
+        if(comment.getArticleId()!=null&&comment.getUserPhone()!=null){
+            praiseService.insertComment(comment);
+            articleService.updateCommentNum(comment.getArticleId());
+            return SysResult.ok();
+        }else{
+            return SysResult.build(201,"",null);
+        }
+    }
+    @ApiOperation(value = "从界面获取articleId、userPhone、transmitPhone和transmitContext",notes="根据transmit对象创建评论成功记录")
+    @PostMapping("insertTransmitContext")
+    public SysResult insertTransmitContext(Transmit transmit){
+        if(transmit.getArticleId()!=null&&transmit.getTransmitPhone()!=null&&transmit.getUserPhone()!=null){
+            praiseService.insertTransmitContext(transmit);
+            articleService.updateTransmitNum(transmit.getArticleId());
+            return SysResult.ok();
+        }else{
+            return SysResult.build(201,"",null);
+        }
+    }
+    @ApiOperation(value = "从界面获取articleId、userPhone、transmitPhone和transmitContext",notes="根据transmit对象创建评论成功记录")
+    @PostMapping("insertTransmit")
+    public SysResult insertTransmit(Transmit transmit){
+        if(transmit.getArticleId()!=null&&transmit.getTransmitPhone()!=null&&transmit.getUserPhone()!=null){
+            praiseService.insertTransmit(transmit);
+            articleService.updateTransmitNum(transmit.getArticleId());
+            return SysResult.ok();
+        }else{
+            return SysResult.build(201,"",null);
+        }
+    }
 }
