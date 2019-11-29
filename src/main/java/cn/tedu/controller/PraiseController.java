@@ -85,7 +85,7 @@ public class PraiseController {
             return SysResult.build(201,"",null);
         }
     }
-    @ApiOperation(value = "从界面获取articleId、userPhone、transmitPhone和transmitContext",notes="根据transmit对象创建评论成功记录")
+    @ApiOperation(value = "从界面获取articleId、userPhone和transmitPhone",notes="根据transmit对象创建评论成功记录")
     @PostMapping("insertTransmit")
     public SysResult insertTransmit(Transmit transmit){
         if(transmit.getArticleId()!=null&&transmit.getTransmitPhone()!=null&&transmit.getUserPhone()!=null){
